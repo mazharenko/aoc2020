@@ -1,6 +1,11 @@
 ﻿open System
 open System.IO
 
+let input =
+    File.ReadAllText(Path.Combine(__SOURCE_DIRECTORY__, "puzzle1.txt"))
+        .Split([|'\n'|], StringSplitOptions.RemoveEmptyEntries)
+    |> Seq.map int
+
 (*
 Specifically, they need you to find the two entries that sum to 2020 and then multiply those two numbers together.
 
@@ -18,15 +23,15 @@ produces 1721 * 299 = 514579, so the correct answer is 514579.
 Of course, your expense report is much larger. Find the two entries that sum to 2020; what do you get if
 you multiply them together?
 *)
-//[<EntryPoint>]
-let puzzle1 argv =
-    let input = Set.ofSeq (File.ReadAllText("puzzle1.txt").Split('\n', StringSplitOptions.RemoveEmptyEntries) |> Seq.map int)
+let puzzle1 =
+    let input = Set.ofSeq input
     let found1 =
         input
         |> Seq.find (fun number -> Set.contains (2020 - number) input)
     let found2 = 2020 - found1;
-    printf "%i" (found1 * found2)
-    0
+    found1 * found2
+    
+puzzle1
 
 
 (*
@@ -39,10 +44,7 @@ Multiplying them together produces the answer, 241861950.
 
 In your expense report, what is the product of the three entries that sum to 2020?
 *)
-[<EntryPoint>]
-let puzzle1_2 argv =
-    let input = (File.ReadAllText("puzzle1.txt").Split('\n', StringSplitOptions.RemoveEmptyEntries) |> Seq.map int)
-               
+let puzzle1_2 =
     let crossproduct l1 l2 l3 =
           seq { for el1 in l1 do
                   for el2 in l2 do
@@ -52,5 +54,6 @@ let puzzle1_2 argv =
     let cartesian = crossproduct input input input
     
     let found1, found2, found3 = cartesian |> Seq.find (fun (l1,l2,l3) -> 2020 = l1 + l2 + l3)
-    printf "%i" (found1 * found2 * found3)
-    0
+    found1 * found2 * found3
+    
+puzzle1_2
