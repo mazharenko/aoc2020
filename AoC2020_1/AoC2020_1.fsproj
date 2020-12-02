@@ -7,6 +7,7 @@
   <ItemGroup>
     <None Include="puzzle1.fsx" />
     <None Include="*.txt" />
+    <None Include="puzzle2.fsx" />
   </ItemGroup>
 
 </Project>
