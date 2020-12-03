@@ -1,6 +1,6 @@
 
 [<EntryPoint>]
 let main argv =
-    printfn "%O" Puzzle2.puzzle2
-    printfn "%O" Puzzle2.puzzle2_2
+    printfn "%i" Puzzle3.puzzle3_1
+    printfn "%i" Puzzle3.puzzle3_2
     0
