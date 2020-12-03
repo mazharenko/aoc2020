@@ -118,8 +118,8 @@ let startPoint = 0, 0
 let countTrees slope (right, down) =
     moves startPoint (right, down)
     |> Seq.map (fun (x, y) -> Slope.checkLocation slope x y)
-    |> Seq.takeWhile (fun loc -> loc <> Slope.Out)
-    |> Seq.filter (fun loc -> loc = Slope.In Slope.Tree)
+    |> Seq.takeWhile ((<>) Slope.Out)
+    |> Seq.filter ((=) (Slope.In Slope.Tree))
     |> Seq.length
 
 let slope =
