@@ -6,9 +6,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Include="puzzle1.fs" />
     <None Include="*.txt" />
+    <Compile Include="common.fs" />
+    <Compile Include="puzzle1.fs" />
     <Compile Include="puzzle2.fs" />
+    <Compile Include="puzzle3.fs" />
     <Compile Include="run.fs" />
   </ItemGroup>
 

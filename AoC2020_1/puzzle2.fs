@@ -1,10 +1,12 @@
 ﻿#if !INTERACTIVE
 module Puzzle2
+#else
+#load "common.fs"
 #endif
 
-open System
 open System.IO
 open System.Text.RegularExpressions
+open common
 
 type rule = { letter: char; min: int; max: int }
 
@@ -29,8 +31,7 @@ let parseCase s =
     rule, pw
 
 let input =
-    File.ReadAllText(Path.Combine(__SOURCE_DIRECTORY__, "puzzle2.txt"))
-        .Split([| '\n' |], StringSplitOptions.RemoveEmptyEntries)
+    readLines (Path.Combine(__SOURCE_DIRECTORY__, "puzzle2.txt"))
     |> Seq.map parseCase
 
 (*

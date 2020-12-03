@@ -1,13 +1,14 @@
 ﻿#if !INTERACTIVE
 module Puzzle1
+#else
+#load "common.fs"
 #endif
 
-open System
 open System.IO
+open common
 
 let input =
-    File.ReadAllText(Path.Combine(__SOURCE_DIRECTORY__, "puzzle1.txt"))
-        .Split([|'\n'|], StringSplitOptions.RemoveEmptyEntries)
+    readLines (Path.Combine(__SOURCE_DIRECTORY__, "puzzle1.txt"))
     |> Seq.map int
 
 (*
