@@ -1,8 +1,10 @@
-﻿open System
+﻿#if !INTERACTIVE
+module Puzzle2
+#endif
+
+open System
 open System.IO
 open System.Text.RegularExpressions
-
-
 
 type rule = { letter: char; min: int; max: int }
 
@@ -64,7 +66,9 @@ let puzzle2 =
     |> Seq.where (fun (rule, pw) -> check rule pw)
     |> Seq.length
 
+#if INTERACTIVE
 puzzle2
+#endif
 
 
 (*
@@ -96,4 +100,6 @@ let puzzle2_2 =
     |> Seq.where (fun (rule, pw) -> check2 rule pw)
     |> Seq.length
 
+#if INTERACTIVE
 puzzle2_2
+#endif

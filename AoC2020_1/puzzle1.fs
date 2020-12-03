@@ -1,4 +1,8 @@
-﻿open System
+﻿#if !INTERACTIVE
+module Puzzle1
+#endif
+
+open System
 open System.IO
 
 let input =
@@ -30,9 +34,10 @@ let puzzle1 =
         |> Seq.find (fun number -> Set.contains (2020 - number) input)
     let found2 = 2020 - found1;
     found1 * found2
-    
+ 
+#if INTERACTIVE
 puzzle1
-
+#endif
 
 (*
 The Elves in accounting are thankful for your help; one of them even offers you a starfish coin
@@ -55,5 +60,7 @@ let puzzle1_2 =
     
     let found1, found2, found3 = cartesian |> Seq.find (fun (l1,l2,l3) -> 2020 = l1 + l2 + l3)
     found1 * found2 * found3
-    
+
+#if INTERACTIVE
 puzzle1_2
+#endif
