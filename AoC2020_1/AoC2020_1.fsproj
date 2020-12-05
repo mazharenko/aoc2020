@@ -1,18 +1,21 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
-
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <TargetFramework>net5.0</TargetFramework>
+    <LangVersion>preview</LangVersion>
   </PropertyGroup>
-
   <ItemGroup>
     <None Include="*.txt" />
     <Compile Include="common.fs" />
     <Compile Include="puzzle1.fs" />
     <Compile Include="puzzle2.fs" />
     <Compile Include="puzzle3.fs" />
+    <Compile Include="puzzle4_1.fs" />
     <Compile Include="puzzle5.fs" />
     <Compile Include="run.fs" />
   </ItemGroup>
-
+  <ItemGroup>
+    <PackageReference Include="FParsec" />
+  </ItemGroup>
 </Project>
