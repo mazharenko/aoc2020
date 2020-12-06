@@ -12,11 +12,12 @@
     <Compile Include="puzzle2.fs" />
     <Compile Include="puzzle3.fs" />
     <Compile Include="puzzle4_1.fs" />
+    <Compile Include="puzzle4_2.fs" />
     <Compile Include="puzzle5.fs" />
     <Compile Include="puzzle6.fs" />
     <Compile Include="run.fs" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="FParsec" />
+    <PackageReference Include="FParsec" Version="1.1.1" />
   </ItemGroup>
 </Project>
