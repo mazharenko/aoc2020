@@ -84,15 +84,10 @@ module Slope =
     let private unwrap =
         function
         | T cells -> cells
-
-    let load (patternLines: string []): Slope =
-        let length = Seq.head patternLines |> String.length
-        let height = Array.length patternLines
-
-        Array2D.init height length (fun r c ->
-            match patternLines.[r].[c] with
-            | '#' -> Tree
-            | _ -> Empty)
+        
+    let create matrix =
+        matrix
+        |> Array2D.map (fun c -> match c with | '#' -> Tree | _ -> Empty)
         |> T
 
     let checkLocation (slope: Slope) x y =
@@ -124,9 +119,8 @@ let countTrees slope (right, down) =
 
 let slope =
     Path.Combine(__SOURCE_DIRECTORY__, "puzzle3.txt")
-    |> readLines
-    |> Array.ofSeq
-    |> Slope.load
+    |> read2d
+    |> Slope.create
     
 let puzzle3_1 =
     countTrees slope (3, 1)
