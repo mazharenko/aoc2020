@@ -1,3 +1,8 @@
+//
+// https://adventofcode.com/2020/day/6
+//
+
+
 #if !INTERACTIVE
 module Puzzle6
 

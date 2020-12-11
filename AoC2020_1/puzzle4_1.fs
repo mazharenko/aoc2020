@@ -1,3 +1,7 @@
+//
+// https://adventofcode.com/2020/day/4
+//
+
 #if !INTERACTIVE
 module Puzzle4_1
 #else
@@ -5,9 +9,9 @@ module Puzzle4_1
 #r "nuget:FParsec"
 #endif
 
-
 open System.IO
 open FParsec
+
 
 let input =
     let text = File.ReadAllText (Path.Combine(__SOURCE_DIRECTORY__, "puzzle4.txt"))
