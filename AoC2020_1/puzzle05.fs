@@ -13,7 +13,7 @@ open common
 
 
 let input =
-    Path.Combine(__SOURCE_DIRECTORY__, "puzzle5.txt")
+    Path.Combine(__SOURCE_DIRECTORY__, "puzzle05.txt")
     |> readLines
     |> Array.ofSeq
 

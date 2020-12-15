@@ -62,7 +62,7 @@ let countTrees slope (right, down) =
     |> Seq.length
 
 let slope =
-    Path.Combine(__SOURCE_DIRECTORY__, "puzzle3.txt")
+    Path.Combine(__SOURCE_DIRECTORY__, "puzzle03.txt")
     |> read2d
     |> Slope.create
     

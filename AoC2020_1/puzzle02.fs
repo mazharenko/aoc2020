@@ -35,7 +35,7 @@ let parseCase s =
     rule, pw
 
 let input =
-    readLines (Path.Combine(__SOURCE_DIRECTORY__, "puzzle2.txt"))
+    readLines (Path.Combine(__SOURCE_DIRECTORY__, "puzzle02.txt"))
     |> Seq.map parseCase
 
 

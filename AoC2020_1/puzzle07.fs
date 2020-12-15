@@ -16,7 +16,7 @@ open FParsec
 open common
 
 let input =
-    Path.Combine(__SOURCE_DIRECTORY__, "puzzle7.txt")
+    Path.Combine(__SOURCE_DIRECTORY__, "puzzle07.txt")
     |> readLines
     |> Array.ofSeq
     

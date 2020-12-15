@@ -12,7 +12,7 @@ open System.IO
 open common
 
 let input =
-    readLines (Path.Combine(__SOURCE_DIRECTORY__, "puzzle1.txt"))
+    readLines (Path.Combine(__SOURCE_DIRECTORY__, "puzzle01.txt"))
     |> Seq.map int
 
 let puzzle1 =

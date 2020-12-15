@@ -8,16 +8,16 @@
   <ItemGroup>
     <None Include="*.txt" />
     <Compile Include="common.fs" />
-    <Compile Include="puzzle1.fs" />
-    <Compile Include="puzzle2.fs" />
-    <Compile Include="puzzle3.fs" />
-    <Compile Include="puzzle4_1.fs" />
-    <Compile Include="puzzle4_2.fs" />
-    <Compile Include="puzzle5.fs" />
-    <Compile Include="puzzle6.fs" />
-    <Compile Include="puzzle7.fs" />
-    <Compile Include="puzzle8.fs" />
-    <Compile Include="puzzle9.fs" />
+    <Compile Include="puzzle01.fs" />
+    <Compile Include="puzzle02.fs" />
+    <Compile Include="puzzle03.fs" />
+    <Compile Include="puzzle04_1.fs" />
+    <Compile Include="puzzle04_2.fs" />
+    <Compile Include="puzzle05.fs" />
+    <Compile Include="puzzle06.fs" />
+    <Compile Include="puzzle07.fs" />
+    <Compile Include="puzzle08.fs" />
+    <Compile Include="puzzle09.fs" />
     <Compile Include="puzzle10.fs" />
     <Compile Include="puzzle11.fs" />
     <Compile Include="puzzle12.fs" />

@@ -14,7 +14,7 @@ open System
 open System.IO
 
 let input =
-    let text = File.ReadAllText (Path.Combine(__SOURCE_DIRECTORY__, "puzzle6.txt"))
+    let text = File.ReadAllText (Path.Combine(__SOURCE_DIRECTORY__, "puzzle06.txt"))
     text.Split ("\n\n", StringSplitOptions.RemoveEmptyEntries)
     
 let puzzle6 countGroup =

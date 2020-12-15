@@ -14,7 +14,7 @@ open FParsec
 
 
 let input =
-    let text = File.ReadAllText (Path.Combine(__SOURCE_DIRECTORY__, "puzzle4.txt"))
+    let text = File.ReadAllText (Path.Combine(__SOURCE_DIRECTORY__, "puzzle04.txt"))
     text.Split "\n\n"
     
 type EyeColor = | EyeColor of string

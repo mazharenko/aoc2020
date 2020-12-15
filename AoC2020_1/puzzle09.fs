@@ -12,7 +12,7 @@ open System.IO
 open common
 
 let input =
-    Path.Combine(__SOURCE_DIRECTORY__, "puzzle9.txt")
+    Path.Combine(__SOURCE_DIRECTORY__, "puzzle09.txt")
     |> readLines
     |> Seq.map int64
     |> Array.ofSeq
