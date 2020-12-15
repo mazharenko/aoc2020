@@ -126,7 +126,7 @@ let hgt =
 let hcl =
     pstring "hcl:#"
     >>. parray 6 (anyOf "0123456789abcdef")
-    |>> string
+    |>> (fun chars -> new string(chars))
     |>> HairColor |>> HairColorAttr
 
 let ecl =
