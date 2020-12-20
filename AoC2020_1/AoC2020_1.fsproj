@@ -26,6 +26,7 @@
     <Compile Include="puzzle15.fs" />
     <Compile Include="puzzle16.fs" />
     <Compile Include="puzzle17.fs" />
+    <Compile Include="puzzle19.fs" />
     <Compile Include="run.fs" />
   </ItemGroup>
   <ItemGroup>
