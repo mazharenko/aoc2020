@@ -12,7 +12,6 @@ module Puzzle14
 open System
 open System.Collections
 open System.IO
-open System.Numerics
 open common
 open FParsec
 
@@ -58,7 +57,7 @@ let program =
     let modCommand =
         pstring "mask"
         >>. spaces >>. pstring "=" >>. spaces
-        >>. parray 36 (anyOf "01X") |>> (fun chars -> new string(chars)) |>> mask
+        >>. parray 36 (anyOf "01X") |>> String.fromArray  |>> mask
         |>> MaskCommand
         .>> eof
     let setCommand =

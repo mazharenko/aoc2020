@@ -12,6 +12,10 @@ let read2d (filePath: string) =
     let height = Array.length lines
 
     Array2D.init height length (fun r c -> lines.[r].[c])
+
+module Array2D =
+    let toArray (source: 'T[,]) =
+        source |> Seq.cast<'T> |> Seq.toArray
     
 module Seq =
     let forAny predicate source =
@@ -22,4 +26,8 @@ module Array =
     let forany predicate source =
         Array.forall (predicate >> not) source
         |> not
+        
+module String =
+    let fromArray (ar:char[]) = 
+        new string(ar)
 

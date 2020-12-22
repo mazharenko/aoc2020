@@ -14,6 +14,7 @@ module Puzzle4_2
 open System
 open System.IO
 open FParsec
+open common
 
 let input =
     let text = File.ReadAllText (Path.Combine(__SOURCE_DIRECTORY__, "puzzle04.txt"))
@@ -126,7 +127,7 @@ let hgt =
 let hcl =
     pstring "hcl:#"
     >>. parray 6 (anyOf "0123456789abcdef")
-    |>> (fun chars -> new string(chars))
+    |>> String.fromArray 
     |>> HairColor |>> HairColorAttr
 
 let ecl =
