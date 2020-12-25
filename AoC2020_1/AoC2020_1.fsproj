@@ -33,6 +33,7 @@
     <Compile Include="puzzle22.fs" />
     <Compile Include="puzzle23.fs" />
     <Compile Include="puzzle24.fs" />
+    <Compile Include="puzzle25.fs" />
     <Compile Include="run.fs" />
   </ItemGroup>
   <ItemGroup>
