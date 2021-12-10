@@ -6,94 +6,55 @@
 module Puzzle18
 #else
 #load "common.fs"
-#r "nuget:FParsec, Version=1.1.1"
+#r "nuget:Farkle, Version=6.3.2"
 #endif
 
 open System.IO
+open Farkle
+open Farkle.Builder
 open common
-open FParsec
 
 let input = readLines (Path.Combine(__SOURCE_DIRECTORY__, "puzzle18.txt"))
 
-type Operation = (int64 -> int64 -> int64)
-    
-type Expression =
-    | Value of int64
-    | Computation of Expression * Operation * Expression
-    
-let rec calculate expr =
-    match expr with
-    | Value v -> v
-    | Computation (op1, op, op2) -> op (calculate op1) (calculate op2)
+open Farkle.Builder.OperatorPrecedence
 
-    
-let pValue : Parser<Expression, unit> = pint64 |>> Value
-
-let pPlus = pchar '+' >>. preturn (+)
-let pTimes = pchar '*' >>. preturn (*)
-
-//     1 (+ 2) (* 3) (+ 4)
-// =>  [(+ 4); (* 3); (+ 2)]    1
-// =>   +4     *3      +2       1
-// =>   +4     *3          1+2
-// =>   +4           (1+2)*3
-// =>       ((1+2)*3)+4      
-let buildComputation (firstExpression, restOperations) =
-    let rec build l : Expression =
-        match l with
-        | [] -> firstExpression
-        | (op, e)::tail ->  Computation ((build tail), op, e)
-    restOperations |> List.rev |> build
+let number = Terminals.genericUnsigned<uint64> "Number"
+let expression = nonterminal "Expression"
+expression.SetProductions(
+    !@ number |> asIs,
+    !@ expression .>> "+" .>>. expression => (fun x1 x2 -> x1 + x2),
+    !@ expression .>> "*" .>>. expression => (fun x1 x2 -> x1 * x2),
+    !& "(" .>>. expression .>> ")" |> asIs
+)
 
 module Part1 =
-    let (pIntExpression, pIntExpressionRef) = createParserForwardedToRef<Expression, unit>()
-
-    let pComputation =
-        (pIntExpression .>> spaces) .>>. many ((pPlus <|> pTimes) .>>. (spaces >>. pIntExpression .>> spaces))
-        |>> buildComputation
-        
-    pIntExpressionRef :=
-        pValue <|> (pchar '(' >>. pComputation .>> pchar ')')
-        
-    let pExpression =
-        attempt (pValue .>> eof)
-        <|>
-        pComputation .>> eof
-        
-    let parse expr =
-        match run pExpression expr with
-        | Success(result, _, _) -> result
-        | _ -> failwith "not parsed"
-
-    let answer = input
-                 |> Seq.map (parse >> calculate)
-                 |> Seq.sum
     
+    let private opScope =
+        OperatorScope(
+            LeftAssociative("+", "-", "*", "/")
+        )
+        
+    let private parser = DesigntimeFarkle.withOperatorScope opScope expression |> RuntimeFarkle.build
+        
+    let answer =
+        input
+        |> Seq.map (RuntimeFarkle.parseString parser)
+        |> Seq.map (function | Ok value -> value | Error error -> failwith (error.ToString()))
+        |> Seq.sum
+        
+
 module Part2 =
-    let (pIntExpression, pIntExpressionRef) = createParserForwardedToRef<Expression, unit>()
-
-    let pOp pOperation pOperand =
-        (pOperand .>> spaces) .>>. many (pOperation .>>. (spaces >>. pOperand .>> spaces))
-            |>> buildComputation
     
-    let pComputation =
-        pIntExpression
-        |> pOp pPlus 
-        |> pOp pTimes
-    
-    pIntExpressionRef :=
-        pValue <|> (pchar '(' >>. pComputation .>> (pchar ')'))
+    let private opScope =
+        OperatorScope(
+            LeftAssociative("*", "/"),
+            LeftAssociative("+", "-")
+        )
         
-    let pExpression =
-        attempt (pValue .>> eof)
-        <|>
-        pComputation .>> eof
+    let private parser = DesigntimeFarkle.withOperatorScope opScope expression |> RuntimeFarkle.build
         
-    let parse expr =
-        match run pExpression expr with
-        | Success(result, _, _) -> result
-        | _ -> failwith "not parsed"
-        
-    let answer = input
-                 |> Seq.map (parse >> calculate)
-                 |> Seq.sum
+    let answer =
+        input
+        |> Seq.map (RuntimeFarkle.parseString parser)
+        |> Seq.map (function | Ok value -> value | Error error -> failwith (error.ToString()))
+        |> Seq.sum
